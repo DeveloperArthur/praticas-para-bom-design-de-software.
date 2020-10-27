@@ -1,0 +1,152 @@
+Praticas, principios e padroes de projeto
+
+SOLID
+S-responsabilidade unica: fazer só uma coisa e a classe nao cresce pra sempre, isso é coesão
+O-open-closed: quando vc consegue mudar o comportamento da classe sem mexer nela, por exemplo: Passando uma outra implementação para ela	
+L-composição: criar uma classe e reutilizar ela nas outras ao inves de usar herança
+I-segregação de interface: a classe só deve depender de métodos que ela usa
+D-inversão de dependencia: depender de interface ao inves de implementacao
+
+Encapsulamento/Tell dont ask
+
+Lei de Demeter: não é bom ter A.getB().getC().getD().acao();
+o ideal é encapsular isso dentro da classe A e deixar 
+A.acao();
+
+Design Patterns:
+Strategy: bem semelhante com o open-closed, ao invés de ter:
+if(pagamento == "Itau")
+	return calcula(0.1)
+if(pagamento == "satade")
+	return calcula(0.3)
+
+vc cria uma interface que calcula, os bancos implementam essa classe e fica encapsulado lá, sua classe vai ficar
+return interfacePagamento.calcula()
+assim, vc mudou o comportamento da classe, sem mexer nela (https://www.youtube.com/watch?v=pxmqkzWPW6E)
+
+Chain of Responsibility: é uma forma de você encadiar, caso tenha um cenario onde "tenta esse, se nao der, tenta esse, se nao der, tenta esse", ao inves de encher a classe de if's, cria uma interface, com metodo pra tentar() e chamarProximo(), assim, isso fica encapsulado dentro da propria classe
+
+Template method: Quando você tem 2 ou mais classes que fazem a mesma coisa , de maneiras diferetes, por exemplo:
+class A
+if(a.getValor > 2){
+	return 3 x 4
+}
+
+class B
+if(b.getValor > 4){
+	return 7+8
+
+essas classes fazem a mesma coisa, porém, de maneiras diferentes, é possivel criar uma classe abstrata e criar um template para este caso:
+
+class Abstrata
+if(logicaCondicional){
+	return logicaDeCalculo
+}
+
+public abstract logicaCondicional();
+public abstract logicaDeCalculo();
+
+As outras classes ficarao assim
+
+class A extends Abstrata
+
+@overide
+public abstract logicaCondicional(){
+	return valor > 2;
+}
+
+@overide
+public abstract logicaDeCalculo(){
+	return 3 x 4
+}
+
+--
+
+class B extends Abstrata
+
+@overide
+public abstract logicaCondicional(){
+	return valor > 4;
+}
+
+@overide
+public abstract logicaDeCalculo(){
+	return 7+8
+}
+
+Decorator: Quando classes podem ser compostas por outras classes, ao inves de criar ICPPComINSS, ICMComINSS, tera uma classe pai Imposto, todas vao extender dela e todas as classes vao ter um construtor onde podem receber Imposto, o metodo calcula vai calcular o imposto + imposto composto
+
+State: Quando uma classe pode ter varios estados diferentes e cada estado pode ou nao fazer algo, por exemplo, a classe Mario, no estado Invencivel, nao pode morrer... Mas a classe Mario no estado Pequenino pode morrer, para nao encher o codigo de if, criamos uma classe para cada estado, uma interface chamada Estado, e nela estarao todos os metodos possivels, as classes dos estados vao implementar essa interface e dizer se podem ou nao fazer algo na propria implementacao (https://www.youtube.com/watch?v=Z_xGtNpar74)
+
+Builder: Quando tem muitos atributos, e todos sao criados via parametro, é dificil criar esse objeto e setar todos os parametros dele, pra isso podemos usar o Builder
+
+Observer: Quando vc tem varias acoes para executar, seguidamente, ao inves de ter:
+salvaNoBanco();
+enviaPorEmail();
+integra();
+
+voce pode criar uma interface AcaoAposX e nela ter o metodo executa(), todas as outras implementacoes vao implementar a interface
+na classe voce tera uma List<AcaoAposX> e ao inves daqueles codigos pode fazer
+acaoaposx.stream().forEach(acao -> acao.executa());
+
+Factory: Usamos uma fábrica quando temos que isolar o processo de criação de um objeto em um único lugar. Essa fábrica pode descobrir como criar o objeto dentro dela própria, mas geralmente ela não precisa de muitas informações para criar o objeto.
+
+Flyweight: Quando vc precisa instanciar varias vezes uma classe, por exemplo, um software para tocar musica new Musica(new Do, new Re, new Fa, new Fa)
+ao inves de istanciar varias vezes a mesma classe, vc pode criar um Map<nomeDaNota, ClasseDaNota>
+ao subir o projeto, ja popula essa lista com as instancias
+musicas.put("do", new Do)
+musicas.put("re", new Re)
+musicas.put("fa", new Fa)
+e no main, agora vai ficar new Musica(musica.get("do"), musica.get("re"), musica.get("fa"), musica.get("fa"))
+
+Memento: quando vc precisa recuperar um estado de um objeto, como se fosse um rollback, por exemplo:
+Contrato tem os Estados EM ANDAMENTO ESPERANDO CONCLUIDO CANCELADO
+e vc deu um estado.esta(EM ANDAMENTO)
+e depois estado.esta(ESPERANDO)
+e digamos que voce queira voltar no estado anterior
+a solução memento: guarda os estados em uma lista, e depois só recupera esses estados
+
+Interpreter: Solução em árvore que se auto avalia e dá um resultado final
+Quando vc precisa interpretar alguma coisa, transforma as expressoes em classes e as expressoes se avaliam
+
+Visitor: Usado para navegar por uma árvore para fazer algo, como uma estrutura de dados.
+
+Bridge: Imagina que no seu sistema, vc precise mandar email no hotmail, gmail e yahoo, os 3 vao fazer a mesma coisa, porém, a implementacao é diferente, nesse caso podemos usar o bridge, uma interface que vai ter todos os metodos que essas classes precisam, todas irao implementar!
+
+Adapter: Imagina que no seu sistema tem uma classe de UsuarioJDBC, e você na regra de negócio precisa usar essa classe JDBC, mas vc nao pode depender da implementação... Então voce cria uma interface... Mas a classe usuarioJDBC nao implementa essa interface e vc nao quer mexer nela, pra nao quebrar... Então, vc cria uma classe Adapter, implementa essa interface E Adapter vai chamar UsuarioJDBC, Adapter vai depender da implementacao, mas pelo menos sua regra de negocio está dependendo de interface (https://www.youtube.com/watch?v=5AiiHFizQWY)
+
+Command: Quando você tem por exemplo, uma classe Pedido, e ela pagaPedido() e finalizaPedido(), precisamos de uma fila para executar esses comandos em ordem, o problema é que eu nao sei o que fazer com o pedido, o pedido1 tem q ser pago? Tem q ser finalizado? Como criar uma lista assim? Voce cria uma inteface Comando com um unico metodo executa(), cada comando tera uma classe, entao class PagaPedido e class FinalizaPedido, essas classes vao receber o pedido no construtor, implementar a interface Comando e na implementacao chamar o comando desejado, FinalizaComando vai implementar colocando pedido.finalizaPedido(), e assim por diante...
+
+Façade: Imagine que vc tem a classe TV, Pipoca e Luz, para assistir um filme vc teria que instanciar essas 3 classes e chamar 
+tv.liga();
+pipoca.faz();
+luz.apaga();
+
+Ao invés disso, cria uma classe chamada AssistirFilme, essa classe instancia todas as classes e tem o metodo iniciaFilme(), dentro desse metodo terá a implementacao
+tv.liga();
+pipoca.faz();
+luz.apaga();
+
+Na prática, ao inves de instanciar uma a uma, chame uma implementacao que já instancia todas!
+
+Singleton: Fazer o objeto ter uma unica instancia dentro do sistema (https://www.youtube.com/watch?v=BBywfIrmd5M)
+
+Iterator: Ao invés de usar for, podemos percorrer os itens de uma lista/array/hashmap, com uma interface chamada iterator, ela vai ter o metodo next e hasNext, vai precisar de uma classe que implementa esse Iterator, os metodos sao simples de iterar e recebe a lista no construtor, crie uma lista, passe no construtor, e dps é só fazer objeto.hasNext e sout(objeto.next) (https://www.youtube.com/watch?v=Xd_8hVDa61U)
+
+Composite: Padrão de projeto de software utilizado para representar um objeto formado pela composição de objetos similares. Este conjunto de objetos pressupõe uma mesma hierarquia de classes a que ele pertence. (https://www.youtube.com/watch?v=cE9ZBNAbSAg)
+
+Mediator: Quando vc tem um relacionamento muitos pra muitos no banco de dados, ele cria uma tabela intermediaria que relaciona os dois... É basicamente esse o problema que o mediator tenta resolver, imagina q vc tem no seu sistema uma classe android que envia msg pro ios , e uma classe ios que manda msg pro android
+class android
+enviaMsgProIos();
+
+class ios
+enviamsgpandroid();
+
+toda vez q adicinar uma classe enviadora nova, tera q adicionar nessas classes...
+com mediator vc pode criar uma classe , extender dela e encapsular isso tudo dentro de uma unica classe (https://www.youtube.com/watch?v=XId86icEYSA)
+
+Proxy: Quando vc tem metodo que é caro, é demorado e consome mais processamento, o ideal é que esse metodo nao seja chamado desnecessariamente, entao vc cria uma classe que primeiro verifica se essa lista (por exemplo) esta nula, se tiver, chama o metodo da consulta cara, se nao tiver nulo, entao em algum momento ja foi carregada essa lista, nao precisa rodar de novo, chama o metodo barato, ele devolve a propria lista. (https://www.youtube.com/watch?v=KMudd2R5Y4c)
+
+Abstract Factory: Este padrão permite a criação de famílias de objetos relacionados ou dependentes por meio de uma única interface e sem que a classe concreta seja especificada. (https://www.youtube.com/watch?v=aKnuX8kqpRM)
+
+Prototype: Permite a criação de novos objetos a partir de um modelo original ou protótipo que é clonado para evitar criar um novo objeto utilizando a palavra new, o que diminui o custo de memória.
