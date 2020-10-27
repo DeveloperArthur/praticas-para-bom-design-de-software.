@@ -1,4 +1,4 @@
 package br.com.arthur.principles.designpatterns.flyweight.problema;
 
-public class Re {
+public class Re implements Nota {
 }
