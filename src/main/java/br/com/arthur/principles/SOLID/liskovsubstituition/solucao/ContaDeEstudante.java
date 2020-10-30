@@ -1,5 +1,5 @@
 package br.com.arthur.principles.SOLID.liskovsubstituition.solucao;
 
-public class ContaDeEstudante extends ContaComum {
+public class ContaDeEstudante {
     private Conta conta;
 }
