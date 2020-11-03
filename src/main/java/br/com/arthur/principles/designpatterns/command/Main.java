@@ -1,5 +1,5 @@
 /*
-* Veja que tinhamos um monte de comandos que precisavam ser executados
+* imagine que temos um monte de comandos que precisavam ser executados
 * em um outro momento, eu nao podia simplesmente ir no metodo main
 * e dizer pedido1.paga(), é uma fila de trabalho, deve ser executado
 * de maneira Assincrona, nesse caso usamos o Command, classes que
