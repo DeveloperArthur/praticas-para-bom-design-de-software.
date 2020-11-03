@@ -1,6 +1,7 @@
 /*
-* Ou seja, estamos extendendo de conta comum, pois usamos a maioria dos atributos e
-* metodos, mas elas tem 1 diferenca...
+* veja que estamos extendendo de conta comum, pois usamos a maioria dos 
+atributos e metodos, mas elas tem 1 diferenca e por isso estamos
+retornando exception... isso nao é bom
 * o principio diz que devemos criar uma composição
 * */
 
