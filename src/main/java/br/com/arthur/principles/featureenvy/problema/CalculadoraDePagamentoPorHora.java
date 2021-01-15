@@ -1,6 +1,6 @@
 /* Observe, o método calculaPagamentoSemanal consulta o objeto
  * Funcionario pra obter os dados que ele opera, não seria mais facil
- * ao inves disso, criar uma classe em Funcionario, pra ele mesmo retornar
+ * ao inves disso, criar um método na classe Funcionario, pra ele mesmo retornar
  * o pagamento semanal? Este cenário é chamado de inveja de funcionalidade*/
 
 package br.com.arthur.principles.featureenvy.problema;
