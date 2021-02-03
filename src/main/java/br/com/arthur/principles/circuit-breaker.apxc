@@ -14,9 +14,10 @@ retorno alternativo.
 
 private Integer tentativasDeIntegrar = 0;
 private Integer limiteDeTentativas = 10;
+private ClienteService service;
 
 private void enviaParaIntegrar(){
-	List<ClienteDto> clientes = new ArrayList()<>;
+	List<ClienteDto> clientes = service.buscaClientesParaIntegrar();
 	for(ClienteDto cliente : clientes){
 		HttpRequest requisicao = new HttpRequest('endpoint');
 		requisicao.setBody(cliente);
