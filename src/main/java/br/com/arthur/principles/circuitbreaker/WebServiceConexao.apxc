@@ -17,7 +17,7 @@ private HttpResponse envia(HttpRequest requisicao){
 	CircuitBreaker circuitBreaker = new CircuitBreaker();
         
 	if(circuitBreaker.excedeuLimiteDeTentativas())
-		return circuitBreaker.getRetornoAlternativo;
+		return circuitBreaker.getRetornoAlternativo();
         
 	HttpResponse resposta = new Http().send(requisicao);
 	Boolean requisicaoDeuFalha = resposta.getStatusCode() >= 400;
