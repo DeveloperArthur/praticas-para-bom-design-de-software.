@@ -1,0 +1,18 @@
+private HttpResponse envia(HttpRequest requisicao){
+	CircuitBreaker circuitBreaker = new CircuitBreaker();
+        
+	if(circuitBreaker.excedeuLimiteDeTentativas())
+		return circuitBreaker.getRetornoAlternativo;
+        
+	HttpResponse resposta = new Http().send(requisicao);
+	Boolean requisicaoDeuFalha = resposta.getStatusCode() >= 400;
+            
+	if(requisicaoDeuFalha){
+		circuitBreaker.aumentaContadorDeTentativas();
+		circuitBreaker.setCodigoHttpDeErro(resposta.getStatusCode());
+		return circuitBreaker.getRetornoAlternativo();
+	}
+
+        System.debug('Conta enviada ao Webservice ');
+        return resposta;
+}
