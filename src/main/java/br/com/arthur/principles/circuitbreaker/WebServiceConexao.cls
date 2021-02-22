@@ -12,22 +12,24 @@ de integrar com falha, ele nem envia mais a requisicao
 apenas retorna o erro direto... É o que chamamos de
 retorno alternativo.
 */
-
-private HttpResponse envia(HttpRequest requisicao){
-	CircuitBreaker circuitBreaker = new CircuitBreaker();
+public class WebServiceConexao {
+	
+	private HttpResponse envia(HttpRequest requisicao){
+		CircuitBreaker circuitBreaker = new CircuitBreaker();
         
-	if(circuitBreaker.excedeuLimiteDeTentativas())
-		return circuitBreaker.getRetornoAlternativo();
+		if(circuitBreaker.excedeuLimiteDeTentativas())
+			return circuitBreaker.getRetornoAlternativo();
         
-	HttpResponse resposta = new Http().send(requisicao);
-	Boolean requisicaoDeuFalha = resposta.getStatusCode() >= 400;
+		HttpResponse resposta = new Http().send(requisicao);
+		Boolean requisicaoDeuFalha = resposta.getStatusCode() >= 400;
             
-	if(requisicaoDeuFalha){
-		circuitBreaker.aumentaContadorDeTentativas();
-		circuitBreaker.setCodigoHttpDeErro(resposta.getStatusCode());
-		return circuitBreaker.getRetornoAlternativo();
-	}
+		if(requisicaoDeuFalha){
+			circuitBreaker.aumentaContadorDeTentativas();
+			circuitBreaker.setCodigoHttpDeErro(resposta.getStatusCode());
+			return circuitBreaker.getRetornoAlternativo();
+		}
 
-        System.debug('Conta enviada ao Webservice ');
-        return resposta;
+        	System.debug('Conta enviada ao Webservice ');
+        	return resposta;
+	}
 }
