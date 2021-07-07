@@ -2,7 +2,8 @@ Praticas, principios e padroes de projeto
 
 SOLID
 S-responsabilidade unica: fazer só uma coisa e a classe nao cresce pra sempre, isso é coesão
-O-open-closed: quando vc consegue mudar o comportamento da classe sem mexer nela, por exemplo: Passando uma outra implementação para ela	
+O-
+-closed: quando vc consegue mudar o comportamento da classe sem mexer nela, por exemplo: Passando uma outra implementação para ela	
 L-composição: criar uma classe e reutilizar ela nas outras ao inves de usar herança
 I-segregação de interface: a classe só deve depender de métodos que ela usa
 D-inversão de dependencia: depender de interface ao inves de implementacao
@@ -23,6 +24,8 @@ if(pagamento == "satade")
 vc cria uma interface que calcula, os bancos implementam essa classe e fica encapsulado lá, sua classe vai ficar
 return interfacePagamento.calcula()
 assim, vc mudou o comportamento da classe, sem mexer nela (https://www.youtube.com/watch?v=pxmqkzWPW6E)
+
+(Há várias maneiras de implementar o principio Open-Closed, o padrão Strategy é uma delas, você consegue implementar o strategy para implementar o open-closed https://stackoverflow.com/questions/13066488/open-closed-principle-vs-strategy-pattern)
 
 Chain of Responsibility: é uma forma de você encadiar, caso tenha um cenario onde "tenta esse, se nao der, tenta esse, se nao der, tenta esse", ao inves de encher a classe de if's, cria uma interface, com metodo pra tentar() e chamarProximo(), assim, isso fica encapsulado dentro da propria classe
 
