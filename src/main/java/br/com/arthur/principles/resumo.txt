@@ -2,8 +2,7 @@ Praticas, principios e padroes de projeto
 
 SOLID
 S-responsabilidade unica: fazer só uma coisa e a classe nao cresce pra sempre, isso é coesão
-O-
--closed: quando vc consegue mudar o comportamento da classe sem mexer nela, por exemplo: Passando uma outra implementação para ela	
+O-open-closed: quando vc consegue mudar o comportamento da classe sem mexer nela, por exemplo: Passando uma outra implementação para ela	
 L-composição: criar uma classe e reutilizar ela nas outras ao inves de usar herança
 I-segregação de interface: a classe só deve depender de métodos que ela usa
 D-inversão de dependencia: depender de interface ao inves de implementacao
