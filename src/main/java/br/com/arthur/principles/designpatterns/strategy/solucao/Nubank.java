@@ -4,7 +4,7 @@ public class Nubank implements BancoStrategy{
 
     @Override
     public double calcula(Pagamento pagamento) {
-
+        System.out.println("nubank");
         return 0;
     }
 }
