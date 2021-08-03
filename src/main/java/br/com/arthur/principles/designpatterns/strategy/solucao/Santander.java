@@ -4,7 +4,7 @@ public class Santander implements BancoStrategy {
 
     @Override
     public double calcula(Pagamento pagamento) {
-
+        System.out.println("santander");
         return 0;
     }
 }
