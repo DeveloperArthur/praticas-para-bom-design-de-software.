@@ -1,9 +1,13 @@
 package br.com.arthur.principles.designpatterns.strategy.solucao;
 
 public class Pagamento {
-    private String banco;
+    private BancoStrategy banco;
 
-    public String getBanco() {
+    public BancoStrategy getBanco() {
         return banco;
+    }
+
+    public void setBanco(BancoStrategy banco) {
+        this.banco = banco;
     }
 }
