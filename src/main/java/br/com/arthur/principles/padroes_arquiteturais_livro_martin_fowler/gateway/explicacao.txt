@@ -1,0 +1,5 @@
+assim como DAO é uma abstração para banco de dados
+e FACADE é uma abstração para serviços web
+ambos são gateways
+
+"Um gateway é uma classe que encapsula o acesso a um sistema ou recurso externo"
