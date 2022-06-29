@@ -1,0 +1,5 @@
+DAO é uma classe que vai abstrair sua comunicação com banco de dados
+de forma que você não precisa saber isso porque o DAO esconde estes detalhes de você
+
+o façade funciona da mesma forma, mas no caso dele, irá encapsular
+e abstrair integrações entre sistemas, microserviços etc.
