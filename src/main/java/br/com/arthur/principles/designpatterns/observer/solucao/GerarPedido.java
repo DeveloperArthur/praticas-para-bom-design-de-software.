@@ -27,7 +27,8 @@ public class GeraPedido {
         //Entao aqui nos temos ouvintes, observadores, classes que estao observando o evento
         //e a classe que dispara os eventos para os interessados
 
-        //Esse é um exemplo de inversao de dependencia, ao inves de chamarmos classe por classe
+        //Isso é o que chamamos de IoC, inversão de controle
+        //ao inves de chamarmos classe por classe
         //a gente dispara o evento e cada uma das classes vao ser notificadas, e elas que vao reagir ao evento
     }
 }
