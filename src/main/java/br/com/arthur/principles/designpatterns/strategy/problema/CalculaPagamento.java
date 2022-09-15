@@ -1,6 +1,6 @@
 /*
 * Perceba que cada banco, a classe vai crescer mais
-* alem disso, estamos criando dependencia com as classes de bancos
+* alem disso, estamos criando dependencia com as classes de bancos.
 * semelhante ao open-closed, quando vamos usar strategy, precisamos
 * conseguir mudar o comportamento da classe sem alterar ela
 * */
