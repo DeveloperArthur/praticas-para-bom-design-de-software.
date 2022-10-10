@@ -30,5 +30,7 @@ public class GeraPedido {
         //Isso é o que chamamos de IoC, inversão de controle
         //ao inves de chamarmos classe por classe
         //a gente dispara o evento e cada uma das classes vao ser notificadas, e elas que vao reagir ao evento
+
+        //Para deixar essa implementação não bloqueante, veja este exemplo: https://github.com/DeveloperArthur/curso-ddd-alura/tree/main/src/main/java/br/com/alura/escola/domainEventsExample
     }
 }
