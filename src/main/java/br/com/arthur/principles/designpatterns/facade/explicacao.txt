@@ -2,4 +2,12 @@ DAO é uma classe que vai abstrair sua comunicação com banco de dados
 de forma que você não precisa saber isso porque o DAO esconde estes detalhes de você
 
 o façade funciona da mesma forma, mas no caso dele, irá encapsular
-e abstrair integrações entre sistemas, microserviços etc.
+e abstrair integrações entre sistemas, microserviços, e detalhes de outras classes
+
+Facace serve para esconde detalhes internos. 
+Podem ser detalhes da própria classe, ou podem ser detalhes de outras classes. 
+No geral o padrão facade é utilizado quando temos essa fachada com outras classes. 
+Tenho uma classe A que chama a classe B, C e D, e você não quer expor isso para os clientes (classes que a utilizam)
+você não quer que o cliente tenha que saber quais classes ele precisa chamar, qual a ordem.
+
+a imagem print-livro.png deixa claro a utilização.
