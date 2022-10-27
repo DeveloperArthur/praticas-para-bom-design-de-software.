@@ -3,13 +3,13 @@
 package br.com.arthur.principles.designpatterns.strategy.solucao;
 
 public class CalculaPagamento {
-    private BancoStrategy bancoStrategy;
+    private BancoStrategy banco;
 
-    public CalculaPagamento(BancoStrategy bancoStrategy) {
-        this.bancoStrategy = bancoStrategy;
+    public CalculaPagamento(BancoStrategy banco) {
+        this.banco = banco;
     }
 
     public double calcula(Pagamento pagamento) {
-        return bancoStrategy.calcula(pagamento);
+        return banco.calcula(pagamento);
     }
 }
