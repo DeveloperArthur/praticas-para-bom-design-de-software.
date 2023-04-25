@@ -1,5 +1,7 @@
 /*
-Usado para navegar por uma árvore para fazer algo, como uma estrutura de dados.
+Visitor é um padrão de design popular para navegar em estruturas
+de dados complexas.
+Neste exemplo ele é usado para navegar por uma árvore para fazer algo, como uma estrutura de dados.
 * */
 
 package br.com.arthur.principles.designpatterns.visitor;
