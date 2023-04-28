@@ -2,6 +2,8 @@
 * Solução em árvore que se auto avalia e dá um resultado final
 Quando vc precisa interpretar alguma coisa, transforma as expressoes
 * em classes e as expressoes se avaliam
+
+muito usado para processamento de gramática
 * */
 
 package br.com.arthur.principles.designpatterns.interpreter;
