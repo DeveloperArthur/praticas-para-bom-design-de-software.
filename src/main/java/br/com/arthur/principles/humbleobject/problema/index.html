@@ -1,0 +1,62 @@
+<!-- Repare que para testarmos essa página web, precisariamos utilizar
+    alguma ferramenta de testes de aceitação como Selenium ou Cypress.
+    Não tem como testarmos unitariamente pois a lógica está acoplada ao HTML.
+    O pattern HumbleObject orienta a isolar a lógica JS da página HTML 
+    para conseguir testar unitariamente -->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h3>Sistema web para calcular pontuação de Professores.</h3>
+    <h4>Preencha os campos do formulário abaixo e as pontuações aparecerão na tabela acima.</h4>
+
+    <form id="calculoPontuacao">
+        <label for="mes_cargo">Meses no cargo:</label>
+        <input type="number" id="mes_cargo" placeholder="Digite os meses no cargo" required><br><br>
+
+        <label for="mes_lotacao">Meses na lotação:</label>
+        <input type="number" id="mes_lotacao" placeholder="Digite os meses na lotação" required><br><br>
+
+        <label for="mes_adjunto">Meses na carreira adjunto:</label>
+        <input type="number" id="mes_adjunto" placeholder="Digite os meses na carreira adjunto" required><br><br>
+
+        <label for="mes_titular">Meses na carreira titular:</label>
+        <input type="number" id="mes_titular" placeholder="Digite os meses na carreira titular" required><br><br>
+
+        <label for="magisterio">Magistério:</label>
+        <input type="number" id="magisterio" placeholder="Digite o magistério" required><br><br>
+
+        <button onclick="calcularPontuacao()">Calcular Pontuação</button>
+    </form>
+
+    <h4>Resultado</h4>
+
+    <p>Soma 1: <span id="total1"></span></p>
+    <p>Soma 2: <span id="total2"></span></p>
+
+    <script>
+        function calcularPontuacao(){
+            var mes_cargo = document.getElementById("mes_cargo").value;
+            var mes_lotacao = document.getElementById("mes_lotacao").value;
+            var mes_adjunto = document.getElementById("mes_adjunto").value;
+            var mes_titular = document.getElementById("mes_titular").value;
+            var magisterio = document.getElementById("magisterio").value;
+            
+            if(mes_cargo > 0 && mes_lotacao > 0 && mes_adjunto > 0 && mes_titular > 0 && magisterio > 0){        
+                var valor_mes_cargo = mes_cargo * 6;
+                var valor_mes_lotacao = mes_lotacao * 5;
+                var valor_mes_carreira_adjunto = mes_adjunto * 1;
+                var valor_mes_carreira_titular = mes_titular * 3;
+                var valor_mes_magisterio = magisterio * 0.5;
+        
+                var total1 = valor_mes_cargo + valor_mes_lotacao + valor_mes_carreira_adjunto + valor_mes_carreira_titular + valor_mes_magisterio;
+                var total2 = valor_mes_cargo + valor_mes_carreira_titular + valor_mes_magisterio;
+        
+                document.getElementById('total1').innerHTML = total1;
+                document.getElementById('total2').innerHTML = total2;
+            }	
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- Repare que agora a lógica está em um arquivo isolado e nele não há 
+    nenhuma interação com DOM, temos uma funcao controller responsavel por
+    pegar os valores da página, chamar a lógica e mostrar o resultado na
+    página, assim podemos testar a lógica isolada e unitariamente-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="./pontuacao.js"></script>
+</head>
+<body>
+    <h3>Sistema web para calcular pontuação de Professores.</h3>
+    <h4>Preencha os campos do formulário abaixo e as pontuações aparecerão na tabela acima.</h4>
+
+    <form id="calculoPontuacao">
+        <label for="mes_cargo">Meses no cargo:</label>
+        <input type="number" id="mes_cargo" placeholder="Digite os meses no cargo" required><br><br>
+
+        <label for="mes_lotacao">Meses na lotação:</label>
+        <input type="number" id="mes_lotacao" placeholder="Digite os meses na lotação" required><br><br>
+
+        <label for="mes_adjunto">Meses na carreira adjunto:</label>
+        <input type="number" id="mes_adjunto" placeholder="Digite os meses na carreira adjunto" required><br><br>
+
+        <label for="mes_titular">Meses na carreira titular:</label>
+        <input type="number" id="mes_titular" placeholder="Digite os meses na carreira titular" required><br><br>
+
+        <label for="magisterio">Magistério:</label>
+        <input type="number" id="magisterio" placeholder="Digite o magistério" required><br><br>
+
+        <button onclick="controller()">Calcular Pontuação</button>
+    </form>
+
+    <h4>Resultado</h4>
+
+    <p>Soma 1: <span id="total1"></span></p>
+    <p>Soma 2: <span id="total2"></span></p>
+
+    <script>
+        function controller(){
+            try {
+                var mes_cargo = document.getElementById("mes_cargo").value;
+                var mes_lotacao = document.getElementById("mes_lotacao").value;
+                var mes_adjunto = document.getElementById("mes_adjunto").value;
+                var mes_titular = document.getElementById("mes_titular").value;
+                var magisterio = document.getElementById("magisterio").value;
+            
+                var pontuacao = calcularPontuacao(mes_cargo, mes_lotacao, mes_adjunto, mes_titular, magisterio)
+
+                document.getElementById('total1').innerHTML = pontuacao.total1;
+                document.getElementById('total2').innerHTML = pontuacao.total2;
+            } catch(error){
+                alert(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
