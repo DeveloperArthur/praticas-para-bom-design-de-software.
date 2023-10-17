@@ -4,20 +4,22 @@ package com.globo.jv.sales.domain.strategy;
 @RequestMapping("/investimento")
 public class InvestimentoController {
 
-  // repare que neste caso cada endpoint instancia a implementação
+  // repare que nessa solução cada endpoint instancia a implementação
 
   ProcessaInvestimento processaInvestimento;
 
   @PostMapping("/sac")
   public String sac(@RequestBody Investimento investimento) {
-    processaInvestimento = new ProcessaInvestimento(new TabelaSac());
+    TipoFinanciamento tipoFinanciamento = new TabelaSac();
+    processaInvestimento = new ProcessaInvestimento(tipoFinanciamento);
     processaInvestimento.processa(investimento);
     return "{}";
   }
 
   @PostMapping("/price")
   public String price(@RequestBody Investimento investimento) {
-    processaInvestimento = new ProcessaInvestimento(new TabelaPrice());
+    TipoFinanciamento tipoFinanciamento = new TabelaPrice();
+    processaInvestimento = new ProcessaInvestimento(tipoFinanciamento);
     processaInvestimento.processa(investimento);
     return "{}";
   }
