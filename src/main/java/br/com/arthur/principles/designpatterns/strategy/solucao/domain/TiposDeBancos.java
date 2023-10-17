@@ -11,7 +11,7 @@ public enum TiposDeBancos {
         this.banco = banco;
     }
 
-    public BancoStrategy getBanco() {
+    public BancoStrategy getImplDoBanco() {
         return banco;
     }
 }
