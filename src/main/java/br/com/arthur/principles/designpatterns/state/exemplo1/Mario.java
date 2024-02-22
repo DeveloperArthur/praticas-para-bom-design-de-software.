@@ -1,10 +1,10 @@
-package br.com.arthur.principles.designpatterns.state;
+package br.com.arthur.principles.designpatterns.state.exemplo1;
 
-public class SuperMario implements MarioState {
+public class Mario implements MarioState {
     @Override
     public MarioState pegaCogumelo() {
-        System.out.println("Pegou um cogumelo: Mais 1000 pontos");
-        return this;
+        System.out.println("Pegou um cogumelo: Tornou-se Super Mario");
+        return new SuperMario();
     }
 
     @Override
@@ -21,12 +21,12 @@ public class SuperMario implements MarioState {
 
     @Override
     public MarioState colideComInimigo() {
-        System.out.println("Colidiu com inimigo: Volta a ser Marinho");
-        return new Mario();
+        System.out.println("Colidiu com um inimigo: Mario morre");
+        return new MarioMorto();
     }
 
     @Override
     public String getTipo() {
-        return "Super Mario";
+        return "Mario comum";
     }
 }

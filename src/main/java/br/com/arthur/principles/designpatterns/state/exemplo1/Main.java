@@ -7,7 +7,7 @@
  * dizer se podem ou nao fazer algo na propria implementacao
  * (https://www.youtube.com/watch?v=Z_xGtNpar74)*/
 
-package br.com.arthur.principles.designpatterns.state;
+package br.com.arthur.principles.designpatterns.state.exemplo1;
 
 public class Main {
     public static void main(String[] args) {

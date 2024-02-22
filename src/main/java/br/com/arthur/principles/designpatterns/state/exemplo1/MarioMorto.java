@@ -1,4 +1,4 @@
-package br.com.arthur.principles.designpatterns.state;
+package br.com.arthur.principles.designpatterns.state.exemplo1;
 
 public class MarioMorto implements MarioState {
     @Override
