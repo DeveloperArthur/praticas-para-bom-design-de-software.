@@ -1,0 +1,4 @@
+esse nao é um bom exemplo, mas entenda que 
+transaction script pode ser colocado todo dentro da controller, mas pode tambem criar 
+uma classe pra cada transaction script... é o caso desse projeto, onde SomaLancamentos é 
+um transaction script... ele tem toda a regra de negocio dele ali
