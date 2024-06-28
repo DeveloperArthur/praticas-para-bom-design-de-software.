@@ -67,3 +67,6 @@ public class Pessoa {
         atualizar();
     }
 }
+
+//Minha conversa com Vaughn Vernon sobre o uso do Pattern Active Record
+//https://www.linkedin.com/posts/arthursantosalmeida_minha-conversa-com-vaughn-vernon-sobre-design-activity-7212568639588204544-rdh3
